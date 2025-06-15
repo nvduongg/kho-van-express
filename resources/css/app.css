@@ -1,3 +1,23 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';
+
+/* Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+
+/* Định nghĩa biến CSS cho font Montserrat */
+:root {
+    --font-family-sans: 'Montserrat', sans-serif;
+}
+
+/* Áp dụng font cho thẻ body và các phần tử form */
+body {
+    font-family: var(--font-family-sans);
+}
+
+/* Đảm bảo các input và button cũng dùng font này */
+input, textarea, select, button {
+    font-family: var(--font-family-sans);
+}
+
+/* Các tùy chỉnh Tailwind CSS khác (nếu có) */

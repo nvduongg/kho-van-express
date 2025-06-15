@@ -20,6 +20,10 @@ class DatabaseSeeder extends Seeder
             'password' => bcrypt('password'), // Mật khẩu là 'password'
         ]);
 
+        $this->call([
+            RolesAndPermissionsSeeder::class, // Thêm dòng này để gọi seeder của chúng ta
+        ]);
+
         // Gọi các Seeder theo thứ tự phụ thuộc
         $this->call([
             CustomerSeeder::class,    // Khách hàng cần có trước đơn hàng

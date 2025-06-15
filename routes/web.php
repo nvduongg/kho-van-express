@@ -9,7 +9,8 @@ use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\VehicleController;
 use App\Http\Controllers\ShipmentController;
-use App\Http\Controllers\ReportController; // Thêm dòng này
+use App\Http\Controllers\ReportController;
+use App\Http\Controllers\DashboardController;
 
 /*
 |--------------------------------------------------------------------------
@@ -22,13 +23,19 @@ use App\Http\Controllers\ReportController; // Thêm dòng này
 |
 */
 
+// Thay thế route mặc định
 Route::get('/', function () {
+    // Nếu người dùng đã đăng nhập, chuyển hướng đến dashboard
+    if (Auth::check()) {
+        return redirect()->route('dashboard');
+    }
+    // Nếu chưa, hiển thị trang welcome tùy chỉnh
     return view('welcome');
 });
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+Route::get('/dashboard', [DashboardController::class, 'index'])
+    ->middleware(['auth', 'verified'])
+    ->name('dashboard');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
@@ -41,7 +48,7 @@ Route::middleware('auth')->group(function () {
     // Warehouses
     Route::resource('warehouses', WarehouseController::class);
 
-    // Inventory (Assuming you have an InventoryController with a list/show method for inventory)
+    // Inventory
     Route::resource('inventory', InventoryController::class);
     Route::post('/inventory/{product}/add/{warehouse}', [InventoryController::class, 'addStock'])->name('inventory.addStock');
     Route::post('/inventory/{product}/remove/{warehouse}', [InventoryController::class, 'removeStock'])->name('inventory.removeStock');
@@ -63,7 +70,7 @@ Route::middleware('auth')->group(function () {
     // Reports
     Route::get('/reports/revenue', [ReportController::class, 'revenueReport'])->name('reports.revenue');
     Route::get('/reports/inventory', [ReportController::class, 'inventoryReport'])->name('reports.inventory');
-    Route::get('/reports/shipment', [ReportController::class, 'shipmentReport'])->name('reports.shipment'); // Thêm dòng này
+    Route::get('/reports/shipment', [ReportController::class, 'shipmentReport'])->name('reports.shipment');
 });
 
 require __DIR__.'/auth.php';
