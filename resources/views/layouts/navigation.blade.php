@@ -12,9 +12,52 @@
 
                 <!-- Navigation Links -->
                 <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
-                    <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
+        <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
                         {{ __('Dashboard') }}
                     </x-nav-link>
+
+                    <x-nav-link :href="route('products.index')" :active="request()->routeIs('products.*')">
+                        {{ __('Sản phẩm') }}
+                    </x-nav-link>
+
+                    <x-nav-link :href="route('warehouses.index')" :active="request()->routeIs('warehouses.*')">
+                        {{ __('Kho hàng') }}
+                    </x-nav-link>
+
+                    <x-nav-link :href="route('inventory.index')" :active="request()->routeIs('inventory.*')">
+                        {{ __('Tồn kho') }}
+                    </x-nav-link>
+
+                    <x-nav-link :href="route('customers.index')" :active="request()->routeIs('customers.*')">
+                        {{ __('Khách hàng') }}
+                    </x-nav-link>
+
+                    <x-nav-link :href="route('orders.index')" :active="request()->routeIs('orders.*')">
+                        {{ __('Đơn hàng') }}
+                    </x-nav-link>
+
+                    <x-nav-link :href="route('vehicles.index')" :active="request()->routeIs('vehicles.*')">
+                        {{ __('Phương tiện') }}
+                    </x-nav-link>
+
+                    <x-nav-link :href="route('shipments.index')" :active="request()->routeIs('shipments.*')">
+                        {{ __('Chuyến hàng') }}
+                    </x-nav-link>
+
+                    <x-nav-link :href="route('reports.revenue')" :active="request()->routeIs('reports.*')">
+                        {{ __('Báo cáo') }}
+                    </x-nav-link>
+                    <div class="space-y-1">
+                        <x-responsive-nav-link :href="route('reports.revenue')" :active="request()->routeIs('reports.revenue')">
+                            <span class="ml-4 text-sm">{{ __('Doanh thu') }}</span>
+                        </x-responsive-nav-link>
+                        <x-responsive-nav-link :href="route('reports.inventory')" :active="request()->routeIs('reports.inventory')">
+                            <span class="ml-4 text-sm">{{ __('Tồn kho') }}</span>
+                        </x-responsive-nav-link>
+                        <x-responsive-nav-link :href="route('reports.shipment')" :active="request()->routeIs('reports.shipment')">
+                            <span class="ml-4 text-sm">{{ __('Vận chuyển') }}</span>
+                        </x-responsive-nav-link>
+                    </div>
                 </div>
             </div>
 
@@ -70,6 +113,28 @@
             <x-responsive-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
                 {{ __('Dashboard') }}
             </x-responsive-nav-link>
+            <x-responsive-nav-link :href="route('warehouses.index')" :active="request()->routeIs('warehouses.*')">
+                {{ __('Kho hàng') }}
+            </x-responsive-nav-link>
+            <x-responsive-nav-link :href="route('products.index')" :active="request()->routeIs('products.*')">
+                {{ __('Sản phẩm') }}
+            </x-responsive-nav-link>
+            <x-responsive-nav-link :href="route('inventory.index')" :active="request()->routeIs('inventory.*')">
+                {{ __('Tồn kho') }}
+            </x-responsive-nav-link>
+            <x-responsive-nav-link :href="route('customers.index')" :active="request()->routeIs('customers.*')">
+                {{ __('Khách hàng') }}
+            </x-responsive-nav-link>
+            <x-responsive-nav-link :href="route('vehicles.index')" :active="request()->routeIs('vehicles.*')">
+                {{ __('Phương tiện') }}
+            </x-responsive-nav-link>
+            <x-responsive-nav-link :href="route('orders.index')" :active="request()->routeIs('orders.*')">
+                {{ __('Đơn hàng') }}
+            </x-responsive-nav-link>
+            <x-responsive-nav-link :href="route('shipments.index')" :active="request()->routeIs('shipments.*')">
+                {{ __('Vận chuyển') }}
+            </x-responsive-nav-link>
+            
         </div>
 
         <!-- Responsive Settings Options -->

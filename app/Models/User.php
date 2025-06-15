@@ -45,4 +45,16 @@ class User extends Authenticatable
             'password' => 'hashed',
         ];
     }
+
+    // Thêm thuộc tính role để dễ dàng quản lý vai trò (sẽ dùng Spatie/Laravel-Permission sau này)
+    protected $casts = [
+        'email_verified_at' => 'datetime',
+        'password' => 'hashed',
+    ];
+
+    // Thêm mối quan hệ: Một người dùng có thể là tài xế của nhiều vận chuyển
+    public function shipments()
+    {
+        return $this->hasMany(Shipment::class, 'driver_id');
+    }
 }

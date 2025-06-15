@@ -1,61 +1,138 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# Hệ thống Quản lý Chuỗi Cung ứng (SCM)
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+## Giới thiệu
 
-## About Laravel
+Đây là một ứng dụng web được xây dựng bằng Laravel, cung cấp các chức năng cốt lõi cho việc quản lý chuỗi cung ứng. Hệ thống này giúp doanh nghiệp theo dõi và quản lý hiệu quả các hoạt động từ nhập xuất tồn kho, quản lý đơn hàng, vận chuyển đến báo cáo tổng quan.
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+## Tính năng chính
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+Hệ thống SCM này bao gồm các module chính sau:
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+* **Quản lý Sản phẩm**:
+    * Tạo, xem, chỉnh sửa và xóa thông tin sản phẩm.
+* **Quản lý Kho hàng**:
+    * Tạo, xem, chỉnh sửa và xóa các kho lưu trữ hàng hóa.
+* **Quản lý Tồn kho**:
+    * Theo dõi số lượng tồn kho của từng sản phẩm tại từng kho.
+    * Chức năng nhập/xuất kho thủ công.
+    * Tự động cập nhật tồn kho khi đơn hàng được tạo hoặc chuyến hàng được thực hiện.
+* **Quản lý Khách hàng**:
+    * Lưu trữ thông tin chi tiết của khách hàng.
+    * Tạo, xem, chỉnh sửa và xóa hồ sơ khách hàng.
+* **Quản lý Đơn hàng**:
+    * Tạo đơn hàng mới với nhiều sản phẩm.
+    * Theo dõi trạng thái đơn hàng (đang chờ, đã hoàn thành, đã hủy).
+    * Chức năng hoàn tất và hủy đơn hàng.
+* **Quản lý Phương tiện**:
+    * Quản lý thông tin các phương tiện vận chuyển (xe tải, xe van, v.v.).
+    * Tạo, xem, chỉnh sửa và xóa phương tiện.
+* **Quản lý Chuyến hàng (Shipments)**:
+    * Lên kế hoạch và theo dõi các chuyến hàng.
+    * Gán đơn hàng, phương tiện, kho xuất phát và kho đích cho chuyến hàng.
+    * Cập nhật trạng thái chuyến hàng (đang chờ, đang vận chuyển, đã giao, đã hủy).
+    * Đảm bảo xử lý các quan hệ dữ liệu linh hoạt (nullable relationships).
+* **Báo cáo**:
+    * **Báo cáo Doanh thu**: Thống kê tổng doanh thu theo ngày, tuần, tháng, năm với biểu đồ trực quan (sử dụng Chart.js).
+    * **Báo cáo Tồn kho**: Hiển thị chi tiết số lượng sản phẩm tồn kho tại mỗi kho.
+    * **Báo cáo Vận chuyển**: Thống kê các chuyến hàng theo trạng thái, phương tiện và danh sách chi tiết các chuyến.
+    * Các báo cáo đều có tính năng lọc dữ liệu theo thời gian và các tiêu chí khác.
 
-## Learning Laravel
+## Công nghệ sử dụng
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+* **Framework**: Laravel (phiên bản mới nhất)
+* **Database**: MySQL (hoặc PostgreSQL, SQLite)
+* **Frontend**:
+    * Blade Templates
+    * Tailwind CSS (cho UI)
+    * Alpine.js (cho tương tác JavaScript nhẹ)
+    * Chart.js (cho biểu đồ báo cáo)
+* **Authentication**: Laravel Breeze
+* **Development Tools**: Composer, npm
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+## Yêu cầu hệ thống
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+* PHP >= 8.1
+* Composer
+* Node.js & npm (hoặc Yarn)
+* Cơ sở dữ liệu (MySQL, PostgreSQL, SQLite)
 
-## Laravel Sponsors
+## Cài đặt dự án
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+Để thiết lập dự án trên máy cục bộ của bạn, hãy làm theo các bước sau:
 
-### Premium Partners
+1.  **Clone repository:**
+    ```bash
+    git clone <URL_CỦA_REPOSITORY_CỦA_BẠN>
+    cd ten-du-an-scm
+    ```
 
-- **[Vehikl](https://vehikl.com)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Redberry](https://redberry.international/laravel-development)**
-- **[Active Logic](https://activelogic.com)**
+2.  **Cài đặt các dependency của Composer:**
+    ```bash
+    composer install
+    ```
 
-## Contributing
+3.  **Cài đặt các dependency của Node.js và build tài nguyên frontend:**
+    ```bash
+    npm install
+    npm run dev # Hoặc npm run build cho production
+    ```
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+4.  **Tạo file `.env` và cấu hình môi trường:**
+    * Sao chép file `.env.example` thành `.env`:
+        ```bash
+        cp .env.example .env
+        ```
+    * Mở file `.env` và cấu hình thông tin cơ sở dữ liệu của bạn (DB_DATABASE, DB_USERNAME, DB_PASSWORD). Ví dụ:
+        ```env
+        DB_CONNECTION=mysql
+        DB_HOST=127.0.0.1
+        DB_PORT=3306
+        DB_DATABASE=scm_db
+        DB_USERNAME=root
+        DB_PASSWORD=
+        ```
 
-## Code of Conduct
+5.  **Tạo khóa ứng dụng:**
+    ```bash
+    php artisan key:generate
+    ```
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+6.  **Chạy migrations để tạo bảng trong cơ sở dữ liệu:**
+    ```bash
+    php artisan migrate
+    ```
+    * *Tùy chọn*: Để điền dữ liệu mẫu (ví dụ: người dùng, sản phẩm, kho, v.v.), bạn có thể chạy seeder:
+        ```bash
+        php artisan db:seed
+        ```
 
-## Security Vulnerabilities
+7.  **Chạy máy chủ phát triển Laravel:**
+    ```bash
+    php artisan serve
+    ```
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+Ứng dụng bây giờ sẽ có sẵn tại `http://127.0.0.1:8000`.
 
-## License
+## Sử dụng ứng dụng
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+1.  **Đăng ký/Đăng nhập**: Truy cập `http://127.0.0.1:8000/register` để tạo tài khoản hoặc `http://127.0.0.1:8000/login` nếu bạn đã có tài khoản (hoặc sử dụng tài khoản từ `db:seed` nếu có).
+2.  **Dashboard**: Sau khi đăng nhập, bạn sẽ được đưa đến trang Dashboard.
+3.  **Điều hướng**: Sử dụng thanh điều hướng bên trái để truy cập các module khác nhau:
+    * **Sản phẩm**: Quản lý thông tin các mặt hàng.
+    * **Kho hàng**: Quản lý các địa điểm lưu trữ.
+    * **Tồn kho**: Xem và điều chỉnh số lượng tồn kho.
+    * **Khách hàng**: Quản lý thông tin khách hàng.
+    * **Đơn hàng**: Tạo và theo dõi các đơn đặt hàng.
+    * **Phương tiện**: Quản lý phương tiện vận chuyển.
+    * **Chuyến hàng**: Lập kế hoạch và theo dõi quá trình giao hàng.
+    * **Báo cáo**: Xem các báo cáo phân tích doanh thu, tồn kho và vận chuyển.
+
+## Đóng góp
+
+Mọi đóng góp cho dự án đều được hoan nghênh! Nếu bạn tìm thấy lỗi hoặc có ý tưởng cải tiến, vui lòng mở một issue hoặc gửi pull request.
+
+## Giấy phép
+
+Dự án này được cấp phép theo Giấy phép MIT. Xem file `LICENSE` để biết thêm chi tiết.
+
+---
